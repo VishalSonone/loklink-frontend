@@ -1,0 +1,124 @@
+{
+  "common": {
+    "appName": "Birthday Wishes Portal",
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "karyakartas": "Karyakartas",
+    "bannerPreview": "Banner Preview",
+    "whatsappLogs": "WhatsApp Logs",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "selectLanguage": "Select Language",
+    "english": "English",
+    "hindi": "Hindi",
+    "marathi": "Marathi"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to manage birthday wishes",
+    "email": "Email Address",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register Now",
+    "invalidCredentials": "Invalid email or password",
+    "demoNote": "Demo: demo@example.com / password123"
+  },
+  "register": {
+    "title": "Politician Registration",
+    "subtitle": "Create an account to manage your karyakartas",
+    "name": "Full Name",
+    "email": "Email Address",
+    "password": "Password",
+    "position": "Political Position",
+    "registerButton": "Register & Continue",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Sign In",
+    "success": "Registration successful!"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome",
+    "totalKaryakartas": "Total Karyakartas",
+    "todaysBirthdays": "Today's Birthdays",
+    "wishesScheduled": "Wishes Sent Today",
+    "pendingWishes": "Pending Wishes",
+    "sendWishes": "Send Birthday Wishes",
+    "sendingWishes": "Sending Wishes...",
+    "noTodayBirthdays": "No birthdays today",
+    "birthdayAlert": "Birthday Alert!",
+    "hasBirthdayToday": "has a birthday today!",
+    "viewAll": "View All"
+  },
+  "karyakarta": {
+    "title": "Karyakarta Management",
+    "addNew": "Add Karyakarta",
+    "editKaryakarta": "Edit Karyakarta",
+    "name": "Full Name",
+    "whatsapp": "WhatsApp Number",
+    "dob": "Date of Birth",
+    "photo": "Photo",
+    "uploadPhoto": "Upload Photo",
+    "removePhoto": "Remove Photo",
+    "noKaryakartas": "No karyakartas added yet",
+    "addFirst": "Add your first karyakarta to get started",
+    "deleteConfirm": "Are you sure you want to delete this karyakarta?",
+    "saved": "Karyakarta saved successfully",
+    "deleted": "Karyakarta deleted successfully"
+  },
+  "banner": {
+    "title": "Banner Preview",
+    "selectTemplate": "Select Template",
+    "selectLanguage": "Banner Language",
+    "preview": "Preview",
+    "download": "Download Banner",
+    "generate": "Generate Banner",
+    "template1": "Modern Gradient",
+    "template2": "Political Branding",
+    "template3": "Minimal Premium",
+    "template4": "Festive",
+    "selectKaryakarta": "Select Karyakarta",
+    "noSelection": "Please select a karyakarta"
+  },
+  "whatsapp": {
+    "title": "WhatsApp Logs",
+    "status": "Status",
+    "sent": "Sent",
+    "pending": "Pending",
+    "failed": "Failed",
+    "recipient": "Recipient",
+    "message": "Message",
+    "timestamp": "Time",
+    "noLogs": "No messages sent yet",
+    "sendingTo": "Sending to",
+    "messageSent": "Message sent successfully",
+    "bannerAttached": "Banner attached"
+  },
+  "birthday": {
+    "happyBirthday": "Happy Birthday",
+    "wishMessage": "Wishing you a wonderful birthday filled with joy and happiness!",
+    "from": "From",
+    "warmWishes": "With warm wishes"
+  },
+  "politician": {
+    "name": "Shri Rajesh Kumar",
+    "position": "Member of Legislative Assembly"
+  },
+  "names": {
+    "politician": "Shri Rajesh Kumar",
+    "karyakarta": "Karyakarta Name",
+    "karyakartas": {
+      "Amit Sharma": "Amit Sharma",
+      "Priya Patel": "Priya Patel",
+      "Rahul Deshmukh": "Rahul Deshmukh"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Birthday Wishing Platform - Political Grade Design System */
+
+@layer base {
+  :root {
+    /* Saffron/Navy Political Theme */
+    --background: 40 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Saffron Primary - Indian Political Identity */
+    --primary: 28 87% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Navy Secondary - Trust & Authority */
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 222 20% 45%;
+
+    /* Gold Accent */
+    --accent: 45 93% 47%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 28 87% 55%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-saffron: linear-gradient(135deg, hsl(28 87% 55%) 0%, hsl(35 90% 60%) 100%);
+    --gradient-navy: linear-gradient(135deg, hsl(222 47% 20%) 0%, hsl(222 47% 30%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 47%) 0%, hsl(38 90% 55%) 100%);
+    --gradient-festive: linear-gradient(135deg, hsl(28 87% 55%) 0%, hsl(45 93% 47%) 50%, hsl(28 87% 55%) 100%);
+    --gradient-premium: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(40 33% 96%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.08), 0 2px 4px -1px hsl(222 47% 11% / 0.04);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -2px hsl(222 47% 11% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 10px 10px -5px hsl(222 47% 11% / 0.04);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 28 87% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 20% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 40 20% 88%;
+    --sidebar-ring: 28 87% 55%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 40 33% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 40 33% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 40 33% 98%;
+
+    --primary: 28 87% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 30% 25%;
+    --secondary-foreground: 40 33% 98%;
+
+    --muted: 222 30% 18%;
+    --muted-foreground: 40 20% 65%;
+
+    --accent: 45 93% 47%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 28 87% 55%;
+
+    --sidebar-background: 222 47% 10%;
+    --sidebar-foreground: 40 33% 98%;
+    --sidebar-primary: 28 87% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 30% 18%;
+    --sidebar-accent-foreground: 40 33% 98%;
+    --sidebar-border: 222 30% 20%;
+    --sidebar-ring: 28 87% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-saffron {
+    background: var(--gradient-saffron);
+  }
+  
+  .gradient-navy {
+    background: var(--gradient-navy);
+  }
+  
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+  
+  .gradient-festive {
+    background: var(--gradient-festive);
+  }
+  
+  .gradient-premium {
+    background: var(--gradient-premium);
+  }
+
+  .shadow-political {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

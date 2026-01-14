@@ -1,0 +1,124 @@
+{
+  "common": {
+    "appName": "वाढदिवस शुभेच्छा पोर्टल",
+    "login": "लॉगिन",
+    "logout": "लॉगआउट",
+    "dashboard": "डॅशबोर्ड",
+    "karyakartas": "कार्यकर्ते",
+    "bannerPreview": "बॅनर प्रीव्ह्यू",
+    "whatsappLogs": "व्हॉट्सअॅप लॉग्स",
+    "save": "सेव्ह करा",
+    "cancel": "रद्द करा",
+    "delete": "हटवा",
+    "edit": "संपादित करा",
+    "add": "जोडा",
+    "search": "शोधा",
+    "loading": "लोड होत आहे...",
+    "success": "यशस्वी",
+    "error": "त्रुटी",
+    "selectLanguage": "भाषा निवडा",
+    "english": "इंग्रजी",
+    "hindi": "हिंदी",
+    "marathi": "मराठी"
+  },
+  "login": {
+    "title": "स्वागत आहे",
+    "subtitle": "वाढदिवस शुभेच्छा व्यवस्थापित करण्यासाठी साइन इन करा",
+    "email": "ईमेल पत्ता",
+    "password": "पासवर्ड",
+    "loginButton": "साइन इन करा",
+    "noAccount": "अकाउंट नाही?",
+    "registerLink": "आताच नोंदणी करा",
+    "invalidCredentials": "अवैध ईमेल किंवा पासवर्ड",
+    "demoNote": "डेमो: demo@example.com / password123"
+  },
+  "register": {
+    "title": "राजकारणी नोंदणी",
+    "subtitle": "तुमचे कार्यकर्ते व्यवस्थापित करण्यासाठी एक अकाउंट तयार करा",
+    "name": "पूर्ण नाव",
+    "email": "ईमेल पत्ता",
+    "password": "पासवर्ड",
+    "position": "राजकीय पद",
+    "registerButton": "नोंदणी करा आणि सुरू ठेवा",
+    "alreadyHaveAccount": "आधीच अकाउंट आहे?",
+    "loginLink": "साइन इन करा",
+    "success": "नोंदणी यशस्वी झाली!"
+  },
+  "dashboard": {
+    "title": "डॅशबोर्ड",
+    "welcome": "स्वागत आहे",
+    "totalKaryakartas": "एकूण कार्यकर्ते",
+    "todaysBirthdays": "आजचे वाढदिवस",
+    "wishesScheduled": "आज पाठवलेल्या शुभेच्छा",
+    "pendingWishes": "प्रलंबित शुभेच्छा",
+    "sendWishes": "वाढदिवसाच्या शुभेच्छा पाठवा",
+    "sendingWishes": "शुभेच्छा पाठवत आहे...",
+    "noTodayBirthdays": "आज कोणाचाही वाढदिवस नाही",
+    "birthdayAlert": "वाढदिवस अलर्ट!",
+    "hasBirthdayToday": "चा आज वाढदिवस आहे!",
+    "viewAll": "सर्व पहा"
+  },
+  "karyakarta": {
+    "title": "कार्यकर्ता व्यवस्थापन",
+    "addNew": "कार्यकर्ता जोडा",
+    "editKaryakarta": "कार्यकर्ता संपादित करा",
+    "name": "पूर्ण नाव",
+    "whatsapp": "व्हॉट्सअॅप नंबर",
+    "dob": "जन्म तारीख",
+    "photo": "फोटो",
+    "uploadPhoto": "फोटो अपलोड करा",
+    "removePhoto": "फोटो हटवा",
+    "noKaryakartas": "अद्याप कोणताही कार्यकर्ता जोडलेला नाही",
+    "addFirst": "सुरुवात करण्यासाठी तुमचा पहिला कार्यकर्ता जोडा",
+    "deleteConfirm": "तुम्हाला खात्री आहे की तुम्ही हा कार्यकर्ता हटवू इच्छिता?",
+    "saved": "कार्यकर्ता यशस्वीरित्या सेव्ह केला",
+    "deleted": "कार्यकर्ता यशस्वीरित्या हटवला"
+  },
+  "banner": {
+    "title": "बॅनर प्रीव्ह्यू",
+    "selectTemplate": "टेम्पलेट निवडा",
+    "selectLanguage": "बॅनर भाषा",
+    "preview": "प्रीव्ह्यू",
+    "download": "बॅनर डाउनलोड करा",
+    "generate": "बॅनर तयार करा",
+    "template1": "आधुनिक ग्रेडिएंट",
+    "template2": "राजकीय ब्रँडिंग",
+    "template3": "किमान प्रीमियम",
+    "template4": "उत्सव",
+    "selectKaryakarta": "कार्यकर्ता निवडा",
+    "noSelection": "कृपया एक कार्यकर्ता निवडा"
+  },
+  "whatsapp": {
+    "title": "व्हॉट्सअॅप लॉग्स",
+    "status": "स्थिती",
+    "sent": "पाठवले",
+    "pending": "प्रलंबित",
+    "failed": "अयशस्वी",
+    "recipient": "प्राप्तकर्ता",
+    "message": "संदेश",
+    "timestamp": "वेळ",
+    "noLogs": "अद्याप कोणताही संदेश पाठवला नाही",
+    "sendingTo": "पाठवत आहे",
+    "messageSent": "संदेश यशस्वीरित्या पाठवला",
+    "bannerAttached": "बॅनर जोडले"
+  },
+  "birthday": {
+    "happyBirthday": "वाढदिवसाच्या हार्दिक शुभेच्छा",
+    "wishMessage": "तुम्हाला आनंद आणि समृद्धीने भरलेला वाढदिवस लाभो!",
+    "from": "कडून",
+    "warmWishes": "हार्दिक शुभेच्छांसह"
+  },
+  "politician": {
+    "name": "श्री राजेश कुमार",
+    "position": "विधानसभा सदस्य"
+  },
+  "names": {
+    "politician": "श्री राजेश कुमार",
+    "karyakarta": "कार्यकर्ता नाव",
+    "karyakartas": {
+      "Amit Sharma": "अमित शर्मा",
+      "Priya Patel": "प्रिया पटेल",
+      "Rahul Deshmukh": "राहुल देशमुख"
+    }
+  }
+}
