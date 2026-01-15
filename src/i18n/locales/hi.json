@@ -1,12 +1,12 @@
 {
   "common": {
-    "appName": "जन्मदिन शुभकामना पोर्टल",
+    "appName": "LokLink",
     "login": "लॉगिन",
     "logout": "लॉगआउट",
     "dashboard": "डैशबोर्ड",
     "karyakartas": "कार्यकर्ता",
     "bannerPreview": "बैनर प्रीव्यू",
-    "whatsappLogs": "व्हाट्सएप लॉग्स",
+    "whatsappLogs": "व्हाट्सऐप लॉग्स",
     "save": "सेव करें",
     "cancel": "रद्द करें",
     "delete": "हटाएं",
@@ -19,30 +19,47 @@
     "selectLanguage": "भाषा चुनें",
     "english": "अंग्रेज़ी",
     "hindi": "हिंदी",
-    "marathi": "मराठी"
+    "marathi": "मराठी",
+    "subscription": "सदस्यता"
   },
   "login": {
     "title": "स्वागत है",
     "subtitle": "जन्मदिन शुभकामनाएं प्रबंधित करने के लिए साइन इन करें",
     "email": "ईमेल पता",
+    "emailPlaceholder": "अपना ईमेल पता दर्ज करें",
     "password": "पासवर्ड",
+    "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
     "loginButton": "साइन इन करें",
     "noAccount": "अकाउंट नहीं है?",
     "registerLink": "अभी रजिस्टर करें",
     "invalidCredentials": "अवैध ईमेल या पासवर्ड",
-    "demoNote": "डेमो: demo@example.com / password123"
+    "demoNote": "डेमो: demo@example.com / password123",
+    "emailRequired": "ईमेल आवश्यक है",
+    "invalidEmail": "कृपया एक वैध ईमेल दर्ज करें",
+    "passwordRequired": "पासवर्ड आवश्यक है",
+    "passwordMinLength": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए"
   },
   "register": {
     "title": "राजनेता पंजीकरण",
     "subtitle": "अपने कार्यकर्ताओं को प्रबंधित करने के लिए एक अकाउंट बनाएं",
     "name": "पूरा नाम",
+    "namePlaceholder": "अपना पूरा नाम दर्ज करें",
     "email": "ईमेल पता",
+    "emailPlaceholder": "अपना ईमेल पता दर्ज करें",
     "password": "पासवर्ड",
+    "passwordPlaceholder": "पासवर्ड बनाएं",
     "position": "राजनीतिक पद",
+    "positionPlaceholder": "उदा. सांसद",
     "registerButton": "रजिस्टर करें और जारी रखें",
     "alreadyHaveAccount": "पहले से ही अकाउंट है?",
     "loginLink": "साइन इन करें",
-    "success": "पंजीकरण सफल रहा!"
+    "success": "पंजीकरण सफल रहा!",
+    "nameRequired": "नाम आवश्यक है",
+    "emailRequired": "ईमेल आवश्यक है",
+    "invalidEmail": "कृपया एक वैध ईमेल दर्ज करें",
+    "passwordRequired": "पासवर्ड आवश्यक है",
+    "passwordMinLength": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए",
+    "positionRequired": "पद आवश्यक है"
   },
   "dashboard": {
     "title": "डैशबोर्ड",
@@ -63,7 +80,7 @@
     "addNew": "कार्यकर्ता जोड़ें",
     "editKaryakarta": "कार्यकर्ता संपादित करें",
     "name": "पूरा नाम",
-    "whatsapp": "व्हाट्सएप नंबर",
+    "whatsapp": "व्हाट्सऐप नंबर",
     "dob": "जन्म तिथि",
     "photo": "फोटो",
     "uploadPhoto": "फोटो अपलोड करें",
@@ -89,7 +106,7 @@
     "noSelection": "कृपया एक कार्यकर्ता चुनें"
   },
   "whatsapp": {
-    "title": "व्हाट्सएप लॉग्स",
+    "title": "व्हाट्सऐप लॉग्स",
     "status": "स्थिति",
     "sent": "भेजा गया",
     "pending": "लंबित",
@@ -119,6 +136,69 @@
       "Amit Sharma": "अमित शर्मा",
       "Priya Patel": "प्रिया पटेल",
       "Rahul Deshmukh": "राहुल देशमुख"
+    }
+  },
+  "profile": {
+    "title": "प्रोफ़ाइल सेटिंग्स",
+    "personalInfo": "व्यक्तिगत जानकारी",
+    "updateProfile": "प्रोफ़ाइल अपडेट करें",
+    "success": "प्रोफ़ाइल सफलतापूर्वक अपडेट की गई",
+    "uploadPhoto": "फोटो अपलोड करें",
+    "removePhoto": "फोटो हटाएं"
+  },
+  "subscription": {
+    "title": "सदस्यता और उपयोग",
+    "subtitle": "अपने बिलिंग चक्र, अपग्रेड स्तरों और संसाधन सीमाओं का प्रबंधन करें।",
+    "invoices": "इनवॉइस",
+    "paymentMethods": "भुगतान विधियां",
+    "renews": "नवीनीकरण",
+    "upgrade": "अपग्रेड करें",
+    "downgrade": "डाउनग्रेड करें",
+    "active": "सक्रिय",
+    "contactSales": "बिक्री संपर्क",
+    "month": "माह",
+    "monthly": "मासिक",
+    "yearly": "वार्षिक (20% बचाएं)",
+    "availablePlans": "उपलब्ध योजनाएं",
+    "currentPlan": "वर्तमान योजना",
+    "billingHistory": "बिलिंग इतिहास",
+    "viewAll": "सभी देखें",
+    "manage": "सदस्यता प्रबंधित करें",
+    "table": {
+      "invoiceId": "इनवॉइस आईडी",
+      "date": "तारीख",
+      "plan": "योजना",
+      "amount": "राशि",
+      "status": "स्थिति",
+      "action": "का र्रवाई",
+      "paid": "भुगतान किया"
+    },
+    "usage": {
+      "karyakartas": "प्रबंधित कार्यकर्ता",
+      "karyakartaLimit": "डेटाबेस सीमा",
+      "whatsapp": "व्हाट्सऐप संदेश",
+      "whatsappLimit": "मासिक क्रेडिट",
+      "upgradeRecommended": "अपग्रेड अनुशंसित",
+      "resetsIn": "पुनर्सेट होगा",
+      "days": "दिनों में",
+      "used": "उपयोग किया",
+      "of": "का"
+    },
+    "features": {
+      "karyakartas": "कार्यकर्ता",
+      "basicDashboard": "बुनियादी डैशबोर्ड",
+      "whatsappIntegration": "व्हाट्सऐप एकीकरण",
+      "analytics": "उन्नत एनालिटिक्स",
+      "bulkSMS": "बल्क एसएमएस (सशुल्क)",
+      "dedicatedManager": "समर्पित खाता प्रबंधक",
+      "unlimitedKaryakartas": "असीमित कार्यकर्ता",
+      "apiAccess": "एपीआई एक्सेस",
+      "customReporting": "कस्टम रिपोर्टिंग"
+    },
+    "plans": {
+      "vikasDesc": "स्थानीय जुड़ाव और छोटी टीमों के लिए आवश्यक उपकरण।",
+      "pragatiDesc": "जिला नेताओं के लिए उन्नत एनालिटिक्स और आउटरीच।",
+      "sankalpDesc": "राज्य संचालन के लिए पूर्ण पैमाने पर कमांड सेंटर।"
     }
   }
 }

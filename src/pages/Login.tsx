@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { login, initializeDemoData } from '@/services/storage.service';
-import { Cake, Sparkles, Users, Image } from 'lucide-react';
+import { Cake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 
@@ -16,9 +16,39 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<{email?: string; password?: string}>({});
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const newErrors: {email?: string; password?: string} = {};
+    
+    if (!email) {
+      newErrors.email = t('login.emailRequired') || 'Email is required';
+    } else if (!validateEmail(email)) {
+      newErrors.email = t('login.invalidEmail') || 'Please enter a valid email';
+    }
+    
+    if (!password) {
+      newErrors.password = t('login.passwordRequired') || 'Password is required';
+    } else if (password.length < 6) {
+      newErrors.password = t('login.passwordMinLength') || 'Password must be at least 6 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     initializeDemoData();
     const success = login(email, password);
     if (success) {
@@ -29,14 +59,8 @@ const Login = () => {
     }
   };
 
-  const features = [
-    { icon: Users, text: 'Manage Karyakartas' },
-    { icon: Cake, text: 'Auto Birthday Detection' },
-    { icon: Image, text: 'Dynamic Banners' },
-  ];
-
   return (
-    <div className="min-h-screen gradient-saffron flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{background: 'linear-gradient(135deg, #137fec 0%, #0a5dc7 100%)'}}>
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
@@ -49,7 +73,7 @@ const Login = () => {
         transition={{ duration: 0.3 }}
         className="relative z-10 w-full max-w-md"
       >
-        <Card className="shadow-xl border-0 bg-card/95 backdrop-blur">
+        <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur">
           <CardContent className="pt-8 pb-8 px-8">
             {/* Logo */}
             <motion.div
@@ -58,8 +82,8 @@ const Login = () => {
               transition={{ delay: 0.1 }}
               className="flex justify-center mb-6"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl gradient-saffron shadow-lg">
-                <Cake className="h-8 w-8 text-primary-foreground" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-lg" style={{background: '#137fec'}}>
+                <Cake className="h-8 w-8 text-white" />
               </div>
             </motion.div>
 
@@ -68,69 +92,66 @@ const Login = () => {
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.15 }}
-              className="text-center mb-8"
+              className="text-center mb-4"
             >
-              <h1 className="text-2xl font-bold text-foreground mb-2">{t('login.title')}</h1>
-              <p className="text-muted-foreground">{t('login.subtitle')}</p>
+              <h1 className="text-2xl font-bold text-gray-800 mb-1">{t('login.title')}</h1>
+              <p className="text-gray-600 text-sm">{t('login.subtitle')}</p>
             </motion.div>
 
             {/* Form */}
-            <form onSubmit={handleLogin} className="space-y-4 mb-8">
-              <div className="space-y-2">
-                <Label htmlFor="email">{t('login.email')}</Label>
+            <form onSubmit={handleLogin} className="space-y-3 mb-4">
+              <div className="space-y-1">
+                <Label htmlFor="email" className="text-gray-700 text-sm">{t('login.email')}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="demo@example.com"
+                  placeholder={t('login.emailPlaceholder')}
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (errors.email) setErrors({...errors, email: undefined});
+                  }}
+                  className={`border-gray-300 focus:border-blue-500 focus:ring-blue-500 ${errors.email ? 'border-red-500 focus:border-red-500' : ''}`}
                   required
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                )}
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">{t('login.password')}</Label>
+              <div className="space-y-1">
+                <Label htmlFor="password" className="text-gray-700 text-sm">{t('login.password')}</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={t('login.passwordPlaceholder')}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (errors.password) setErrors({...errors, password: undefined});
+                  }}
+                  className={`border-gray-300 focus:border-blue-500 focus:ring-blue-500 ${errors.password ? 'border-red-500 focus:border-red-500' : ''}`}
                   required
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+                )}
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full gradient-saffron text-primary-foreground font-semibold h-12 text-base gap-2 shadow-lg hover:shadow-xl transition-shadow"
+                className="w-full text-white font-semibold h-10 text-base shadow-lg hover:shadow-xl transition-shadow"
+                style={{background: '#137fec'}}
               >
-                <Sparkles className="h-5 w-5" />
                 {t('login.loginButton')}
               </Button>
             </form>
 
-            {/* Features */}
-            <motion.div
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="grid grid-cols-3 gap-4 mb-8"
-            >
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-                return (
-                  <div key={index} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-muted/50">
-                    <Icon className="h-5 w-5 text-primary" />
-                    <span className="text-xs text-center text-muted-foreground">{feature.text}</span>
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            <div className="text-center mb-6">
-              <p className="text-sm text-muted-foreground">
+            {/* Register Link */}
+            <div className="text-center mb-3">
+              <p className="text-sm text-gray-600">
                 {t('login.noAccount')}{' '}
-                <Link to="/register" className="text-primary font-semibold hover:underline">
+                <Link to="/register" className="font-semibold hover:underline" style={{color: '#137fec'}}>
                   {t('login.registerLink')}
                 </Link>
               </p>
@@ -141,17 +162,13 @@ const Login = () => {
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.25 }}
-              className="pt-6 border-t border-muted"
+              className="pt-3 border-t border-gray-200"
             >
-              <p className="text-sm text-muted-foreground mb-2 text-center">{t('common.selectLanguage')}</p>
+              <p className="text-sm text-gray-600 mb-1 text-center">{t('common.selectLanguage')}</p>
               <div className="flex justify-center">
                 <LanguageSelector />
               </div>
             </motion.div>
-
-            <p className="text-xs text-center text-muted-foreground mt-4">
-              {t('login.demoNote')}
-            </p>
           </CardContent>
         </Card>
       </motion.div>

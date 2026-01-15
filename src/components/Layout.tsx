@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   Cake,
+  CreditCard,
 } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -26,19 +27,20 @@ export const Layout = ({ children }: LayoutProps) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const politician = getPolitician();
-  
+
   const navItems = [
     { path: '/dashboard', label: t('common.dashboard'), icon: LayoutDashboard },
     { path: '/karyakartas', label: t('common.karyakartas'), icon: Users },
     { path: '/banner', label: t('common.bannerPreview'), icon: Image },
     { path: '/logs', label: t('common.whatsappLogs'), icon: MessageSquare },
+    { path: '/subscription', label: t('common.subscription'), icon: CreditCard },
   ];
-  
+
   const handleLogout = () => {
     logout();
     navigate('/');
   };
-  
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -49,11 +51,11 @@ export const Layout = ({ children }: LayoutProps) => {
             <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-saffron">
               <Cake className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="hidden font-bold text-foreground sm:inline-block">
+            <span className="font-bold text-foreground">
               {t('common.appName')}
             </span>
           </Link>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
@@ -73,25 +75,31 @@ export const Layout = ({ children }: LayoutProps) => {
               );
             })}
           </nav>
-          
+
           {/* Right Section */}
           <div className="flex items-center gap-2">
             <LanguageSelector variant="ghost" showLabel={false} />
-            
+
             {/* Profile */}
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted">
-              <div className="h-7 w-7 rounded-full gradient-saffron flex items-center justify-center text-xs font-bold text-primary-foreground">
-                {politician.name.charAt(0)}
+            <Link to="/profile">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted hover:bg-muted/80 transition-colors cursor-pointer">
+                <div className="h-7 w-7 rounded-full gradient-saffron flex items-center justify-center text-xs font-bold text-primary-foreground overflow-hidden">
+                  {politician.photo ? (
+                    <img src={politician.photo} alt={politician.name} className="h-full w-full object-cover" />
+                  ) : (
+                    politician.name.charAt(0)
+                  )}
+                </div>
+                <span className="text-sm font-medium text-foreground max-w-[100px] truncate">
+                  {politician.name.split(' ')[0]}
+                </span>
               </div>
-              <span className="text-sm font-medium text-foreground max-w-[100px] truncate">
-                {politician.name.split(' ')[0]}
-              </span>
-            </div>
-            
+            </Link>
+
             <Button variant="ghost" size="icon" onClick={handleLogout} className="text-muted-foreground hover:text-destructive">
               <LogOut className="h-4 w-4" />
             </Button>
-            
+
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
@@ -103,7 +111,7 @@ export const Layout = ({ children }: LayoutProps) => {
             </Button>
           </div>
         </div>
-        
+
         {/* Mobile Navigation */}
         <AnimatePresence>
           {mobileMenuOpen && (
@@ -129,12 +137,39 @@ export const Layout = ({ children }: LayoutProps) => {
                     </Link>
                   );
                 })}
+
+                <div className="border-t border-border my-2 pt-2">
+                  <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="ghost" className="w-full justify-start gap-2">
+                      <div className="h-5 w-5 rounded-full gradient-saffron flex items-center justify-center text-[10px] font-bold text-primary-foreground overflow-hidden">
+                        {politician.photo ? (
+                          <img src={politician.photo} alt={politician.name} className="h-full w-full object-cover" />
+                        ) : (
+                          politician.name.charAt(0)
+                        )}
+                      </div>
+                      <span className="truncate">{politician.name}</span>
+                    </Button>
+                  </Link>
+
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start gap-2 text-destructive hover:text-destructive hover:bg-destructive/10"
+                    onClick={() => {
+                      handleLogout();
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    <LogOut className="h-4 w-4" />
+                    {t('common.logout')}
+                  </Button>
+                </div>
               </div>
             </motion.nav>
           )}
         </AnimatePresence>
       </header>
-      
+
       {/* Main Content */}
       <main className="container py-6">
         <motion.div

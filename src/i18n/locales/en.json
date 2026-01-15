@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Birthday Wishes Portal",
+    "appName": "LokLink",
     "login": "Login",
     "logout": "Logout",
     "dashboard": "Dashboard",
@@ -17,32 +17,48 @@
     "success": "Success",
     "error": "Error",
     "selectLanguage": "Select Language",
-    "english": "English",
     "hindi": "Hindi",
-    "marathi": "Marathi"
+    "marathi": "Marathi",
+    "subscription": "Subscription"
   },
   "login": {
     "title": "Welcome Back",
     "subtitle": "Sign in to manage birthday wishes",
     "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
     "password": "Password",
+    "passwordPlaceholder": "Enter your password",
     "loginButton": "Sign In",
     "noAccount": "Don't have an account?",
     "registerLink": "Register Now",
     "invalidCredentials": "Invalid email or password",
-    "demoNote": "Demo: demo@example.com / password123"
+    "demoNote": "Demo: demo@example.com / password123",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Please enter a valid email",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters"
   },
   "register": {
     "title": "Politician Registration",
     "subtitle": "Create an account to manage your karyakartas",
     "name": "Full Name",
+    "namePlaceholder": "Enter your full name",
     "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
     "password": "Password",
+    "passwordPlaceholder": "Create a password",
     "position": "Political Position",
+    "positionPlaceholder": "e.g. Member of Parliament",
     "registerButton": "Register & Continue",
     "alreadyHaveAccount": "Already have an account?",
     "loginLink": "Sign In",
-    "success": "Registration successful!"
+    "success": "Registration successful!",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Please enter a valid email",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "positionRequired": "Position is required"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -119,6 +135,69 @@
       "Amit Sharma": "Amit Sharma",
       "Priya Patel": "Priya Patel",
       "Rahul Deshmukh": "Rahul Deshmukh"
+    }
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "personalInfo": "Personal Information",
+    "updateProfile": "Update Profile",
+    "success": "Profile updated successfully",
+    "uploadPhoto": "Upload Photo",
+    "removePhoto": "Remove Photo"
+  },
+  "subscription": {
+    "title": "Subscription & Usage",
+    "subtitle": "Manage your billing cycle, upgrade tiers, and monitor resource limits.",
+    "invoices": "Invoices",
+    "paymentMethods": "Payment Methods",
+    "renews": "Renews",
+    "upgrade": "Upgrade",
+    "downgrade": "Downgrade",
+    "active": "Active",
+    "contactSales": "Contact Sales",
+    "month": "month",
+    "monthly": "Monthly",
+    "yearly": "Yearly (Save 20%)",
+    "availablePlans": "Available Plans",
+    "currentPlan": "Current Plan",
+    "billingHistory": "Billing History",
+    "viewAll": "View All",
+    "manage": "Manage Subscription",
+    "table": {
+      "invoiceId": "Invoice ID",
+      "date": "Date",
+      "plan": "Plan",
+      "amount": "Amount",
+      "status": "Status",
+      "action": "Action",
+      "paid": "Paid"
+    },
+    "usage": {
+      "karyakartas": "Karyakartas Managed",
+      "karyakartaLimit": "Database Limit",
+      "whatsapp": "WhatsApp Messages",
+      "whatsappLimit": "Monthly Credits",
+      "upgradeRecommended": "Upgrade recommended",
+      "resetsIn": "Resets in",
+      "days": "days",
+      "used": "used",
+      "of": "of"
+    },
+    "features": {
+      "karyakartas": "Karyakartas",
+      "basicDashboard": "Basic Dashboard",
+      "whatsappIntegration": "WhatsApp Integration",
+      "analytics": "Advanced Analytics",
+      "bulkSMS": "Bulk SMS (Paid add-on)",
+      "dedicatedManager": "Dedicated Account Manager",
+      "unlimitedKaryakartas": "Unlimited Karyakartas",
+      "apiAccess": "API Access",
+      "customReporting": "Custom Reporting"
+    },
+    "plans": {
+      "vikasDesc": "Essential tools for local engagement and small teams.",
+      "pragatiDesc": "Advanced analytics and outreach for district leaders.",
+      "sankalpDesc": "Full-scale command center for state operations."
     }
   }
 }

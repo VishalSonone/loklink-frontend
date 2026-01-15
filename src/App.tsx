@@ -10,6 +10,8 @@ import Dashboard from "./pages/Dashboard";
 import Karyakartas from "./pages/Karyakartas";
 import BannerPreview from "./pages/BannerPreview";
 import WhatsAppLogs from "./pages/WhatsAppLogs";
+import Subscription from "./pages/Subscription";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import "./i18n";
 
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/karyakartas" element={<AuthGuard><Karyakartas /></AuthGuard>} />
           <Route path="/banner" element={<AuthGuard><BannerPreview /></AuthGuard>} />
           <Route path="/logs" element={<AuthGuard><WhatsAppLogs /></AuthGuard>} />
+          <Route path="/subscription" element={<AuthGuard><Subscription /></AuthGuard>} />
+          <Route path="/profile" element={<AuthGuard><Profile /></AuthGuard>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

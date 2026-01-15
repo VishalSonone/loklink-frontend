@@ -8,8 +8,8 @@
 
 @layer base {
   :root {
-    /* Saffron/Navy Political Theme */
-    --background: 40 33% 98%;
+    /* LokLink Blue Theme */
+    --background: 210 40% 98%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -18,40 +18,40 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Saffron Primary - Indian Political Identity */
-    --primary: 28 87% 55%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary Blue */
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
 
-    /* Navy Secondary - Trust & Authority */
-    --secondary: 222 47% 20%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary Navy */
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 40 20% 94%;
-    --muted-foreground: 222 20% 45%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Gold Accent */
-    --accent: 45 93% 47%;
-    --accent-foreground: 222 47% 11%;
+    /* Accent Cyan/Light Blue */
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
     /* Success Green */
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 210 40% 98%;
 
-    --border: 40 20% 88%;
-    --input: 40 20% 88%;
-    --ring: 28 87% 55%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
 
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-saffron: linear-gradient(135deg, hsl(28 87% 55%) 0%, hsl(35 90% 60%) 100%);
-    --gradient-navy: linear-gradient(135deg, hsl(222 47% 20%) 0%, hsl(222 47% 30%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(45 93% 47%) 0%, hsl(38 90% 55%) 100%);
-    --gradient-festive: linear-gradient(135deg, hsl(28 87% 55%) 0%, hsl(45 93% 47%) 50%, hsl(28 87% 55%) 100%);
-    --gradient-premium: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(40 33% 96%) 100%);
+    --gradient-saffron: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(210 90% 60%) 100%); /* Kept name for compatibility, mapped to Blue */
+    --gradient-navy: linear-gradient(135deg, hsl(217 33% 17%) 0%, hsl(217 33% 25%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(199 89% 48%) 0%, hsl(190 90% 55%) 100%); /* Mapped to Accent */
+    --gradient-festive: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(199 89% 48%) 50%, hsl(221 83% 53%) 100%);
+    --gradient-premium: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 96%) 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
@@ -61,54 +61,54 @@
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 28 87% 55%;
+    --sidebar-primary: 221 83% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 40 20% 94%;
+    --sidebar-accent: 210 40% 96.1%;
     --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 40 20% 88%;
-    --sidebar-ring: 28 87% 55%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 40 33% 98%;
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 40 33% 98%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 40 33% 98%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 28 87% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 222 30% 25%;
-    --secondary-foreground: 40 33% 98%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 222 30% 18%;
-    --muted-foreground: 40 20% 65%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 45 93% 47%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 210 40% 98%;
 
-    --border: 222 30% 20%;
-    --input: 222 30% 20%;
-    --ring: 28 87% 55%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 212.7 26.8% 83.9%;
 
-    --sidebar-background: 222 47% 10%;
-    --sidebar-foreground: 40 33% 98%;
-    --sidebar-primary: 28 87% 55%;
+    --sidebar-background: 222 47% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 221 83% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 30% 18%;
-    --sidebar-accent-foreground: 40 33% 98%;
-    --sidebar-border: 222 30% 20%;
-    --sidebar-ring: 28 87% 55%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 212.7 26.8% 83.9%;
   }
 }
 
