@@ -28,7 +28,7 @@ export const generateWhatsAppMessage = (
 ): string => {
   const politician = getPolitician();
   const msgs = birthdayMessages[language];
-  
+
   return `🎂 *${msgs.greeting}, ${karyakartaName}!* 🎉
 
 ${msgs.message}
@@ -46,20 +46,20 @@ export const sendWhatsAppMessage = async (
   onStatusUpdate?: (status: string) => void
 ): Promise<WhatsAppLog> => {
   const message = generateWhatsAppMessage(karyakarta.name, language);
-  
+
   // Simulate sending process
   onStatusUpdate?.(`📤 Preparing message for ${karyakarta.name}...`);
   await delay(500);
-  
+
   onStatusUpdate?.(`📷 Attaching birthday banner...`);
   await delay(500);
-  
+
   onStatusUpdate?.(`📱 Sending to ${karyakarta.whatsapp}...`);
   await delay(1000);
-  
-  // Simulate success (90% success rate for demo)
-  const success = Math.random() > 0.1;
-  
+
+  // Always succeed for now
+  const success = true;
+
   const log = addWhatsAppLog({
     recipientName: karyakarta.name,
     recipientNumber: karyakarta.whatsapp,
@@ -68,7 +68,7 @@ export const sendWhatsAppMessage = async (
     status: success ? 'sent' : 'failed',
     language,
   });
-  
+
   if (success) {
     onStatusUpdate?.(`✅ Message sent to ${karyakarta.whatsapp}`);
     toast({
@@ -83,7 +83,7 @@ export const sendWhatsAppMessage = async (
       variant: 'destructive',
     });
   }
-  
+
   return log;
 };
 
@@ -95,11 +95,11 @@ export const sendBulkBirthdayWishes = async (
   onProgress?: (current: number, total: number, status: string) => void
 ): Promise<WhatsAppLog[]> => {
   const logs: WhatsAppLog[] = [];
-  
+
   for (let i = 0; i < karyakartas.length; i++) {
     const karyakarta = karyakartas[i];
     onProgress?.(i + 1, karyakartas.length, `Sending to ${karyakarta.name}...`);
-    
+
     try {
       const bannerUrl = await getBannerForKaryakarta(karyakarta);
       const log = await sendWhatsAppMessage(karyakarta, language, bannerUrl);
@@ -107,13 +107,13 @@ export const sendBulkBirthdayWishes = async (
     } catch (error) {
       console.error(`Failed to send to ${karyakarta.name}:`, error);
     }
-    
+
     // Small delay between messages
     if (i < karyakartas.length - 1) {
       await delay(300);
     }
   }
-  
+
   return logs;
 };
 
