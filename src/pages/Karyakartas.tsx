@@ -29,12 +29,13 @@ import {
   updateKaryakarta,
   deleteKaryakarta,
 } from '@/services/storage.service';
+import { getLocalizedName } from '@/utils/localization';
 import { Karyakarta } from '@/types';
 import { Plus, Edit2, Trash2, Search, Users, Calendar, Phone, Upload, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Karyakartas = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [karyakartas, setKaryakartas] = useState<Karyakarta[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,6 +45,8 @@ const Karyakartas = () => {
   // Form state
   const [formData, setFormData] = useState({
     name: '',
+    nameHi: '',
+    nameMr: '',
     whatsapp: '',
     dob: '',
     photo: '',
@@ -63,7 +66,7 @@ const Karyakartas = () => {
   );
 
   const resetForm = () => {
-    setFormData({ name: '', whatsapp: '', dob: '', photo: '' });
+    setFormData({ name: '', nameHi: '', nameMr: '', whatsapp: '', dob: '', photo: '' });
     setEditingKaryakarta(null);
   };
 
@@ -72,6 +75,8 @@ const Karyakartas = () => {
       setEditingKaryakarta(karyakarta);
       setFormData({
         name: karyakarta.name,
+        nameHi: karyakarta.nameHi || '',
+        nameMr: karyakarta.nameMr || '',
         whatsapp: karyakarta.whatsapp,
         dob: karyakarta.dob,
         photo: karyakarta.photo,
@@ -207,14 +212,14 @@ const Karyakartas = () => {
                             />
                           ) : (
                             <div className="h-14 w-14 rounded-full gradient-saffron flex items-center justify-center text-xl font-bold text-primary-foreground">
-                              {karyakarta.name.charAt(0)}
+                              {getLocalizedName(karyakarta, i18n.language).charAt(0)}
                             </div>
                           )}
                         </div>
 
                         {/* Info */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-foreground truncate">{karyakarta.name}</h3>
+                          <h3 className="font-semibold text-foreground truncate">{getLocalizedName(karyakarta, i18n.language)}</h3>
                           <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
                             <Phone className="h-3 w-3" />
                             <span className="truncate">{karyakarta.whatsapp}</span>

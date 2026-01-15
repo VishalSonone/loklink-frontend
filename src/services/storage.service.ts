@@ -71,9 +71,23 @@ export const initializeDemoData = (): void => {
   if (!localStorage.getItem(STORAGE_KEYS.POLITICIAN)) {
     localStorage.setItem(STORAGE_KEYS.POLITICIAN, JSON.stringify(defaultPolitician));
   }
-  if (!localStorage.getItem(STORAGE_KEYS.KARYAKARTAS)) {
+
+  const storedKaryakartas = localStorage.getItem(STORAGE_KEYS.KARYAKARTAS);
+  if (!storedKaryakartas) {
     localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(generateSampleKaryakartas()));
+  } else {
+    // Migration check: If stored data is missing localized names (legacy data), update it
+    try {
+      const parsed = JSON.parse(storedKaryakartas);
+      if (parsed.length > 0 && !parsed[0].nameHi) {
+        console.log('Migrating legacy karyakarta data to localized format...');
+        localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(generateSampleKaryakartas()));
+      }
+    } catch (e) {
+      console.error('Error migrating data', e);
+    }
   }
+
   if (!localStorage.getItem(STORAGE_KEYS.WHATSAPP_LOGS)) {
     localStorage.setItem(STORAGE_KEYS.WHATSAPP_LOGS, JSON.stringify([]));
   }

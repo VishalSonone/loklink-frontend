@@ -29,15 +29,27 @@ const Dashboard = () => {
   const [sendingProgress, setSendingProgress] = useState('');
   const politician = getPolitician();
 
+  const [messageStatusMap, setMessageStatusMap] = useState<Record<string, string>>({});
+
   const loadData = useCallback(() => {
     const allKaryakartas = getKaryakartas();
     setKaryakartas(allKaryakartas);
     setTodaysBirthdays(getTodaysBirthdays());
 
-    // Count today's sent messages
+    // Count today's sent messages and build status map
     const logs = getWhatsAppLogs();
     const today = new Date().toDateString();
-    const todaysSent = logs.filter((log) => new Date(log.timestamp).toDateString() === today && log.status === 'sent');
+
+    const todaysLogs = logs.filter((log) => new Date(log.timestamp).toDateString() === today);
+    const statusMap: Record<string, string> = {};
+
+    todaysLogs.forEach(log => {
+      statusMap[log.recipientNumber] = log.status;
+    });
+
+    setMessageStatusMap(statusMap);
+
+    const todaysSent = todaysLogs.filter(log => log.status === 'sent');
     setSentToday(todaysSent.length);
   }, []);
 
@@ -246,34 +258,47 @@ const Dashboard = () => {
                 </div>
               ) : (
                 <div className="space-y-3">
-                  {todaysBirthdays.map((karyakarta, index) => (
-                    <motion.div
-                      key={karyakarta.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                      className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full gradient-saffron flex items-center justify-center text-sm font-bold text-primary-foreground">
-                          {getLocalizedName(karyakarta, i18n.language).charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-medium text-foreground">{getLocalizedName(karyakarta, i18n.language)}</p>
-                          <p className="text-xs text-muted-foreground">{karyakarta.whatsapp}</p>
-                        </div>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => navigate('/banner', { state: { karyakarta } })}
-                        className="gap-1"
+                  {todaysBirthdays.map((karyakarta, index) => {
+                    const status = messageStatusMap[karyakarta.whatsapp];
+                    return (
+                      <motion.div
+                        key={karyakarta.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
+                        className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                       >
-                        <Cake className="h-3 w-3" />
-                        Preview
-                      </Button>
-                    </motion.div>
-                  ))}
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-full gradient-saffron flex items-center justify-center text-sm font-bold text-primary-foreground">
+                            {getLocalizedName(karyakarta, i18n.language).charAt(0)}
+                          </div>
+                          <div>
+                            <p className="font-medium text-foreground">{getLocalizedName(karyakarta, i18n.language)}</p>
+                            <p className="text-xs text-muted-foreground">{karyakarta.whatsapp}</p>
+                            {status && (
+                              <Badge variant="outline" className={`mt-1 text-[10px] px-1.5 py-0 h-4 border-0 ${status === 'sent' ? 'bg-green-100 text-green-700' :
+                                  status === 'failed' ? 'bg-red-100 text-red-700' :
+                                    'bg-yellow-100 text-yellow-700'
+                                }`}>
+                                {status === 'sent' ? 'Sent' : status === 'failed' ? 'Failed' : 'Pending'}
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-1">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => navigate('/banner', { state: { karyakarta } })}
+                            className="gap-1 h-8"
+                          >
+                            <Cake className="h-3 w-3" />
+                            {t('common.preview')}
+                          </Button>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               )}
             </CardContent>
