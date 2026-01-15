@@ -40,7 +40,7 @@ const Karyakartas = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingKaryakarta, setEditingKaryakarta] = useState<Karyakarta | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
-  
+
   // Form state
   const [formData, setFormData] = useState({
     name: '',
@@ -48,25 +48,25 @@ const Karyakartas = () => {
     dob: '',
     photo: '',
   });
-  
+
   const loadKaryakartas = useCallback(() => {
     setKaryakartas(getKaryakartas());
   }, []);
-  
+
   useEffect(() => {
     loadKaryakartas();
   }, [loadKaryakartas]);
-  
+
   const filteredKaryakartas = karyakartas.filter((k) =>
     k.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     k.whatsapp.includes(searchQuery)
   );
-  
+
   const resetForm = () => {
     setFormData({ name: '', whatsapp: '', dob: '', photo: '' });
     setEditingKaryakarta(null);
   };
-  
+
   const handleOpenModal = (karyakarta?: Karyakarta) => {
     if (karyakarta) {
       setEditingKaryakarta(karyakarta);
@@ -81,12 +81,12 @@ const Karyakartas = () => {
     }
     setIsModalOpen(true);
   };
-  
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     resetForm();
   };
-  
+
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -97,10 +97,10 @@ const Karyakartas = () => {
       reader.readAsDataURL(file);
     }
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.whatsapp || !formData.dob) {
       toast({
         title: 'Error',
@@ -109,7 +109,7 @@ const Karyakartas = () => {
       });
       return;
     }
-    
+
     if (editingKaryakarta) {
       updateKaryakarta(editingKaryakarta.id, formData);
       toast({
@@ -123,11 +123,11 @@ const Karyakartas = () => {
         description: t('karyakarta.saved'),
       });
     }
-    
+
     handleCloseModal();
     loadKaryakartas();
   };
-  
+
   const handleDelete = () => {
     if (deleteId) {
       deleteKaryakarta(deleteId);
@@ -139,12 +139,12 @@ const Karyakartas = () => {
       loadKaryakartas();
     }
   };
-  
+
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
   };
-  
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -156,13 +156,13 @@ const Karyakartas = () => {
               {karyakartas.length} {t('common.karyakartas').toLowerCase()}
             </p>
           </div>
-          
+
           <Button onClick={() => handleOpenModal()} className="gradient-saffron text-primary-foreground gap-2">
             <Plus className="h-4 w-4" />
             {t('karyakarta.addNew')}
           </Button>
         </div>
-        
+
         {/* Search */}
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -173,7 +173,7 @@ const Karyakartas = () => {
             className="pl-10"
           />
         </div>
-        
+
         {/* Karyakarta List */}
         {filteredKaryakartas.length === 0 ? (
           <Card>
@@ -207,14 +207,14 @@ const Karyakartas = () => {
                             />
                           ) : (
                             <div className="h-14 w-14 rounded-full gradient-saffron flex items-center justify-center text-xl font-bold text-primary-foreground">
-                              {t(`names.karyakartas.${karyakarta.name}`, karyakarta.name).charAt(0)}
+                              {karyakarta.name.charAt(0)}
                             </div>
                           )}
                         </div>
-                        
+
                         {/* Info */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-foreground truncate">{t(`names.karyakartas.${karyakarta.name}`, karyakarta.name)}</h3>
+                          <h3 className="font-semibold text-foreground truncate">{karyakarta.name}</h3>
                           <div className="flex items-center gap-1 text-sm text-muted-foreground mt-1">
                             <Phone className="h-3 w-3" />
                             <span className="truncate">{karyakarta.whatsapp}</span>
@@ -224,7 +224,7 @@ const Karyakartas = () => {
                             <span>{formatDate(karyakarta.dob)}</span>
                           </div>
                         </div>
-                        
+
                         {/* Actions */}
                         <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <Button
@@ -253,7 +253,7 @@ const Karyakartas = () => {
           </div>
         )}
       </div>
-      
+
       {/* Add/Edit Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-md">
@@ -262,7 +262,7 @@ const Karyakartas = () => {
               {editingKaryakarta ? t('karyakarta.editKaryakarta') : t('karyakarta.addNew')}
             </DialogTitle>
           </DialogHeader>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Photo Upload */}
             <div className="flex justify-center">
@@ -298,7 +298,7 @@ const Karyakartas = () => {
                 )}
               </div>
             </div>
-            
+
             {/* Name */}
             <div className="space-y-2">
               <Label htmlFor="name">{t('karyakarta.name')} *</Label>
@@ -310,7 +310,7 @@ const Karyakartas = () => {
                 required
               />
             </div>
-            
+
             {/* WhatsApp */}
             <div className="space-y-2">
               <Label htmlFor="whatsapp">{t('karyakarta.whatsapp')} *</Label>
@@ -322,7 +322,7 @@ const Karyakartas = () => {
                 required
               />
             </div>
-            
+
             {/* DOB */}
             <div className="space-y-2">
               <Label htmlFor="dob">{t('karyakarta.dob')} *</Label>
@@ -334,7 +334,7 @@ const Karyakartas = () => {
                 required
               />
             </div>
-            
+
             <DialogFooter>
               <Button type="button" variant="outline" onClick={handleCloseModal}>
                 {t('common.cancel')}
@@ -346,7 +346,7 @@ const Karyakartas = () => {
           </form>
         </DialogContent>
       </Dialog>
-      
+
       {/* Delete Confirmation */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <AlertDialogContent>

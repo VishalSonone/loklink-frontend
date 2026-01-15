@@ -17,6 +17,7 @@ import { sendBulkBirthdayWishes } from '@/services/whatsapp.service';
 import { Karyakarta } from '@/types';
 import { Users, Cake, Send, CheckCircle, Clock, PartyPopper, Gift } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getLocalizedName } from '@/utils/localization';
 
 const Dashboard = () => {
   const { t, i18n } = useTranslation();
@@ -27,33 +28,33 @@ const Dashboard = () => {
   const [isSending, setIsSending] = useState(false);
   const [sendingProgress, setSendingProgress] = useState('');
   const politician = getPolitician();
-  
+
   const loadData = useCallback(() => {
     const allKaryakartas = getKaryakartas();
     setKaryakartas(allKaryakartas);
     setTodaysBirthdays(getTodaysBirthdays());
-    
+
     // Count today's sent messages
     const logs = getWhatsAppLogs();
     const today = new Date().toDateString();
     const todaysSent = logs.filter((log) => new Date(log.timestamp).toDateString() === today && log.status === 'sent');
     setSentToday(todaysSent.length);
   }, []);
-  
+
   useEffect(() => {
     loadData();
   }, [loadData]);
-  
+
   // Auto-detect birthdays on load
   useEffect(() => {
     if (todaysBirthdays.length > 0) {
       toast({
         title: `🎂 ${t('dashboard.birthdayAlert')}`,
-        description: `${t(`names.karyakartas.${todaysBirthdays[0].name}`, todaysBirthdays[0].name)} ${t('dashboard.hasBirthdayToday')}`,
+        description: `${getLocalizedName(todaysBirthdays[0], i18n.language)} ${t('dashboard.hasBirthdayToday')}`,
       });
     }
-  }, [todaysBirthdays, t]);
-  
+  }, [todaysBirthdays, t, i18n.language]);
+
   const handleSendWishes = async () => {
     if (todaysBirthdays.length === 0) {
       toast({
@@ -62,10 +63,10 @@ const Dashboard = () => {
       });
       return;
     }
-    
+
     setIsSending(true);
     setSendingProgress('Preparing banners...');
-    
+
     try {
       await sendBulkBirthdayWishes(
         todaysBirthdays,
@@ -79,7 +80,7 @@ const Dashboard = () => {
             politicianPhoto: politician.photo,
             language: i18n.language as 'en' | 'hi' | 'mr',
             translatedPoliticianName: t('politician.name'),
-            translatedKaryakartaName: t(`names.karyakartas.${karyakarta.name}`, karyakarta.name),
+            translatedKaryakartaName: getLocalizedName(karyakarta, i18n.language),
           });
           return getBannerDataUrl(canvas);
         },
@@ -87,12 +88,12 @@ const Dashboard = () => {
           setSendingProgress(`(${current}/${total}) ${status}`);
         }
       );
-      
+
       toast({
         title: '🎉 All wishes sent!',
         description: `Sent birthday wishes to ${todaysBirthdays.length} karyakarta(s).`,
       });
-      
+
       loadData();
     } catch (error) {
       console.error('Error sending wishes:', error);
@@ -106,7 +107,7 @@ const Dashboard = () => {
       setSendingProgress('');
     }
   };
-  
+
   const stats = [
     {
       title: t('dashboard.totalKaryakartas'),
@@ -137,7 +138,7 @@ const Dashboard = () => {
       bg: 'bg-accent/50',
     },
   ];
-  
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -153,7 +154,7 @@ const Dashboard = () => {
             </h1>
             <p className="text-muted-foreground">{t('politician.position')}</p>
           </div>
-          
+
           <Button
             onClick={handleSendWishes}
             disabled={isSending || todaysBirthdays.length === 0}
@@ -173,7 +174,7 @@ const Dashboard = () => {
             )}
           </Button>
         </motion.div>
-        
+
         {/* Progress indicator */}
         <AnimatePresence>
           {sendingProgress && (
@@ -187,7 +188,7 @@ const Dashboard = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        
+
         {/* Stats Grid */}
         <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => {
@@ -216,7 +217,7 @@ const Dashboard = () => {
             );
           })}
         </div>
-        
+
         {/* Today's Birthdays */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -255,10 +256,10 @@ const Dashboard = () => {
                     >
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 rounded-full gradient-saffron flex items-center justify-center text-sm font-bold text-primary-foreground">
-                          {t(`names.karyakartas.${karyakarta.name}`, karyakarta.name).charAt(0)}
+                          {getLocalizedName(karyakarta, i18n.language).charAt(0)}
                         </div>
                         <div>
-                          <p className="font-medium text-foreground">{t(`names.karyakartas.${karyakarta.name}`, karyakarta.name)}</p>
+                          <p className="font-medium text-foreground">{getLocalizedName(karyakarta, i18n.language)}</p>
                           <p className="text-xs text-muted-foreground">{karyakarta.whatsapp}</p>
                         </div>
                       </div>

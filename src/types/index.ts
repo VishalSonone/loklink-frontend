@@ -11,6 +11,8 @@ export interface Politician {
 export interface Karyakarta {
   id: string;
   name: string;
+  nameHi?: string;
+  nameMr?: string;
   whatsapp: string;
   dob: string; // YYYY-MM-DD format
   photo: string;

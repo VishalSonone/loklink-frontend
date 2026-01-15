@@ -36,6 +36,8 @@ const generateSampleKaryakartas = (): Karyakarta[] => {
     {
       id: '1',
       name: 'Amit Sharma',
+      nameHi: 'अमित शर्मा',
+      nameMr: 'अमित शर्मा',
       whatsapp: '+919876543210',
       dob: todayFormatted, // Today's birthday!
       photo: '',
@@ -44,6 +46,8 @@ const generateSampleKaryakartas = (): Karyakarta[] => {
     {
       id: '2',
       name: 'Priya Patel',
+      nameHi: 'प्रिया पटेल',
+      nameMr: 'प्रिया पटेल',
       whatsapp: '+919876543211',
       dob: '1990-06-15',
       photo: '',
@@ -52,6 +56,8 @@ const generateSampleKaryakartas = (): Karyakarta[] => {
     {
       id: '3',
       name: 'Rahul Deshmukh',
+      nameHi: 'राहुल देशमुख',
+      nameMr: 'राहुल देशमुख',
       whatsapp: '+919876543212',
       dob: '1985-12-25',
       photo: '',
