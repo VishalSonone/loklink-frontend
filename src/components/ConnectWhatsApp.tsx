@@ -112,7 +112,7 @@ export const ConnectWhatsApp = () => {
             const mockCreds = {
                 wabaId: '835273832835582',
                 phoneNumberId: '956195970908927',
-                accessToken: 'EAAdi8M5JRNQBQbL3buZCwTAQHlQEjI7rKfHWNSklgZBAMfTUvb4Jk7MYZAmxWZAIpYtRm6dX6PUeylUDXDVLnCmrZB4wROB3sSuzyxfUXeNGqjr8F4DWpqAZBDwZBij63ZBJuhnyXMkgF6cYPtnYDHG9RbTYunuk3OSQlBZAo2q4iTn7d1j2q3jMD2qvs22rt6mL592pKzZCFNDEBDp7IyC0D8SqR7Eio3OeobFABpXM6BWnWrE4MvljRZACJb2jhmqbaT99FSQHDki9OD1R3u4PhIb'
+                accessToken: 'EAAdi8M5JRNQBQdfF027ik1zQMpSZAVjfTRZCUwkRui7W2byZApo6W2eWA1iQLlV2pvZBdytWPPSZAldSLtAIN3k7DpdfQ6ZBNA411LlWxO6PE2KNmaFrtf50qdQAV1Jap5ytrckAH3s120koEMJltD3bVQ80bBx1czMUZBDn7Jo19oSjjbu9LPpQzWHsAzzxUygDkx6w82L9C8OVa51520Xuj6qtFO8lb89zfH2ahsSbgy042ZBSBz8ZBf2EkhR1BWn7HhsWXXwuDD90KE2h97Y1H'
             };
 
             const politician = getPolitician();

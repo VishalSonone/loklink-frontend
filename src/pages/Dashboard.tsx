@@ -69,10 +69,14 @@ const Dashboard = () => {
   }, [todaysBirthdays, t, i18n.language]);
 
   const handleSendWishes = async () => {
-    if (todaysBirthdays.length === 0) {
+    const unsentBirthdays = todaysBirthdays.filter(
+      (k) => messageStatusMap[k.whatsapp] !== 'sent'
+    );
+
+    if (unsentBirthdays.length === 0) {
       toast({
         title: t('dashboard.noTodayBirthdays'),
-        description: 'No birthday wishes to send today.',
+        description: 'All wishes for today have already been sent successfully.',
       });
       return;
     }
@@ -82,7 +86,7 @@ const Dashboard = () => {
 
     try {
       await sendBulkBirthdayWishes(
-        todaysBirthdays,
+        unsentBirthdays,
         i18n.language as 'en' | 'hi' | 'mr',
         async (karyakarta) => {
           const canvas = await generateBanner(politician.selectedTemplate || 'modern-gradient', {
@@ -103,8 +107,8 @@ const Dashboard = () => {
       );
 
       toast({
-        title: '🎉 All wishes sent!',
-        description: `Sent birthday wishes to ${todaysBirthdays.length} karyakarta(s).`,
+        title: '🎉 Wishes sent!',
+        description: `Successfully sent ${unsentBirthdays.length} birthday wish(es).`,
       });
 
       loadData();
@@ -170,7 +174,11 @@ const Dashboard = () => {
 
           <Button
             onClick={handleSendWishes}
-            disabled={isSending || todaysBirthdays.length === 0}
+            disabled={
+              isSending ||
+              todaysBirthdays.length === 0 ||
+              todaysBirthdays.every(k => messageStatusMap[k.whatsapp] === 'sent')
+            }
             size="lg"
             className="gradient-saffron text-primary-foreground gap-2 font-semibold shadow-lg hover:shadow-xl transition-all"
           >
