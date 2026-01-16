@@ -24,6 +24,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:3000",
+        "http://localhost:8080",
         "https://birth-wish-automation-git-master-nilesh-pawars-projects.vercel.app",
         "https://birth-wish-automation.vercel.app"
     ],
