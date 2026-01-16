@@ -18,6 +18,7 @@ import { Karyakarta } from '@/types';
 import { Users, Cake, Send, CheckCircle, Clock, PartyPopper, Gift } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getLocalizedName } from '@/utils/localization';
+import { ConnectWhatsApp } from '@/components/ConnectWhatsApp';
 
 const Dashboard = () => {
   const { t, i18n } = useTranslation();
@@ -187,6 +188,15 @@ const Dashboard = () => {
           </Button>
         </motion.div>
 
+        {/* Connect WhatsApp Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <ConnectWhatsApp />
+        </motion.div>
+
         {/* Progress indicator */}
         <AnimatePresence>
           {sendingProgress && (
@@ -277,8 +287,8 @@ const Dashboard = () => {
                             <p className="text-xs text-muted-foreground">{karyakarta.whatsapp}</p>
                             {status && (
                               <Badge variant="outline" className={`mt-1 text-[10px] px-1.5 py-0 h-4 border-0 ${status === 'sent' ? 'bg-green-100 text-green-700' :
-                                  status === 'failed' ? 'bg-red-100 text-red-700' :
-                                    'bg-yellow-100 text-yellow-700'
+                                status === 'failed' ? 'bg-red-100 text-red-700' :
+                                  'bg-yellow-100 text-yellow-700'
                                 }`}>
                                 {status === 'sent' ? 'Sent' : status === 'failed' ? 'Failed' : 'Pending'}
                               </Badge>

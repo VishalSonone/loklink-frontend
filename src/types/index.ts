@@ -6,6 +6,9 @@ export interface Politician {
   position: string;
   photo: string;
   defaultLanguage: 'en' | 'hi' | 'mr';
+  wabaId?: string;
+  phoneNumberId?: string;
+  accessToken?: string;
 }
 
 export interface Karyakarta {

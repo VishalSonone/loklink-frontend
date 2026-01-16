@@ -35,10 +35,10 @@ const generateSampleKaryakartas = (): Karyakarta[] => {
   return [
     {
       id: '1',
-      name: 'Amit Sharma',
-      nameHi: 'अमित शर्मा',
-      nameMr: 'अमित शर्मा',
-      whatsapp: '+919876543210',
+      name: 'Nilesh Pawar',
+      nameHi: 'निलेश पवार',
+      nameMr: 'निलेश पवार',
+      whatsapp: '918010532454',
       dob: todayFormatted, // Today's birthday!
       photo: '',
       createdAt: new Date().toISOString(),
@@ -73,18 +73,37 @@ export const initializeDemoData = (): void => {
   }
 
   const storedKaryakartas = localStorage.getItem(STORAGE_KEYS.KARYAKARTAS);
+  const sampleKaryakartas = generateSampleKaryakartas();
+
   if (!storedKaryakartas) {
-    localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(generateSampleKaryakartas()));
+    localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(sampleKaryakartas));
   } else {
-    // Migration check: If stored data is missing localized names (legacy data), update it
     try {
       const parsed = JSON.parse(storedKaryakartas);
-      if (parsed.length > 0 && !parsed[0].nameHi) {
-        console.log('Migrating legacy karyakarta data to localized format...');
-        localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(generateSampleKaryakartas()));
+      // If we don't have our special test member, add them or refresh
+      const testMemberIndex = parsed.findIndex((k: any) => k.name === 'Nilesh Pawar' || k.name === 'Test Member (You)');
+      if (testMemberIndex === -1) {
+        console.log('Adding Nilesh Pawar for WhatsApp testing...');
+        localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(sampleKaryakartas));
+      } else {
+        // Ensure name and number are correct
+        let changed = false;
+        if (parsed[testMemberIndex].name !== 'Nilesh Pawar') {
+          parsed[testMemberIndex].name = 'Nilesh Pawar';
+          parsed[testMemberIndex].nameHi = 'निलेश पवार';
+          parsed[testMemberIndex].nameMr = 'निलेश पवार';
+          changed = true;
+        }
+        if (parsed[testMemberIndex].whatsapp !== '918010532454') {
+          parsed[testMemberIndex].whatsapp = '918010532454';
+          changed = true;
+        }
+        if (changed) {
+          localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(parsed));
+        }
       }
     } catch (e) {
-      console.error('Error migrating data', e);
+      localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(sampleKaryakartas));
     }
   }
 
@@ -137,6 +156,8 @@ export const login = (email?: string, password?: string): boolean => {
 
 export const logout = (): void => {
   localStorage.setItem(STORAGE_KEYS.IS_LOGGED_IN, 'false');
+  // Clear logs on logout for a fresh session next time
+  localStorage.setItem(STORAGE_KEYS.WHATSAPP_LOGS, JSON.stringify([]));
 };
 
 export const isLoggedIn = (): boolean => {

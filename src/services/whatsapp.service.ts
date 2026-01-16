@@ -39,6 +39,7 @@ ${politician.position}`;
 };
 
 // Simulate sending WhatsApp message
+// Simulate sending WhatsApp message
 export const sendWhatsAppMessage = async (
   karyakarta: Karyakarta,
   language: 'en' | 'hi' | 'mr',
@@ -47,44 +48,73 @@ export const sendWhatsAppMessage = async (
 ): Promise<WhatsAppLog> => {
   const message = generateWhatsAppMessage(karyakarta.name, language);
 
-  // Simulate sending process
-  onStatusUpdate?.(`📤 Preparing message for ${karyakarta.name}...`);
-  await delay(500);
+  const politician = getPolitician();
 
-  onStatusUpdate?.(`📷 Attaching birthday banner...`);
-  await delay(500);
+  if (!politician.phoneNumberId || !politician.accessToken) {
+    throw new Error("WhatsApp not connected. Please connect from the dashboard.");
+  }
 
-  onStatusUpdate?.(`📱 Sending to ${karyakarta.whatsapp}...`);
-  await delay(1000);
+  // Use the backend to send the message
+  onStatusUpdate?.(`📤 Sending request to backend...`);
 
-  // Always succeed for now
-  const success = true;
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-  const log = addWhatsAppLog({
-    recipientName: karyakarta.name,
-    recipientNumber: karyakarta.whatsapp,
-    message,
-    bannerUrl: bannerDataUrl,
-    status: success ? 'sent' : 'failed',
-    language,
-  });
+  try {
+    const response = await fetch(`${API_URL}/send-message`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        recipientNumber: karyakarta.whatsapp,
+        messageBody: message,
+        imageUrl: bannerDataUrl || "",
+        phoneNumberId: politician.phoneNumberId,
+        accessToken: politician.accessToken
+      }),
+    });
 
-  if (success) {
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail?.error?.message || "Failed to send message via backend");
+    }
+
+    const data = await response.json();
+    console.log("Backend response:", data);
+
     onStatusUpdate?.(`✅ Message sent to ${karyakarta.whatsapp}`);
     toast({
       title: 'Message Sent! 🎉',
       description: `Birthday wish sent to ${karyakarta.name}`,
     });
-  } else {
-    onStatusUpdate?.(`❌ Failed to send to ${karyakarta.whatsapp}`);
+
+    return addWhatsAppLog({
+      recipientName: karyakarta.name,
+      recipientNumber: karyakarta.whatsapp,
+      message,
+      bannerUrl: bannerDataUrl,
+      status: 'sent',
+      language,
+    });
+
+  } catch (error: any) {
+    console.error("Backend Error:", error);
+    onStatusUpdate?.(`❌ Failed: ${error.message}`);
     toast({
       title: 'Send Failed',
-      description: `Could not send message to ${karyakarta.name}. Will retry later.`,
+      description: error.message || `Could not send message to ${karyakarta.name}`,
       variant: 'destructive',
     });
-  }
 
-  return log;
+    return addWhatsAppLog({
+      recipientName: karyakarta.name,
+      recipientNumber: karyakarta.whatsapp,
+      message,
+      bannerUrl: bannerDataUrl,
+      status: 'failed',
+      language,
+    });
+  }
 };
 
 // Send bulk birthday wishes
