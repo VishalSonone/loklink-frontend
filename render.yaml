@@ -12,10 +12,11 @@ services:
         sync: false # Set in Render Dashboard
 
   # Frontend (Vite)
-  - type: static_site
+  - type: web
     name: wish-weaver-frontend
+    env: static
     buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         fromService:
