@@ -3,22 +3,20 @@ services:
   - type: web
     name: wish-weaver-backend
     env: python
-    plan: free
     buildCommand: pip install -r backend/requirements.txt
     startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: WHATSAPP_ACCESS_TOKEN
-        sync: false
+        sync: false # Set in Render Dashboard
       - key: WHATSAPP_PHONE_NUMBER_ID
-        sync: false
+        sync: false # Set in Render Dashboard
 
   # Frontend (Vite)
-  - type: web
+  - type: static
     name: wish-weaver-frontend
     env: static
-    plan: free
     buildCommand: npm install && npm run build
-    staticPublishPath: dist
+    staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
         fromService:

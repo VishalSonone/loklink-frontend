@@ -21,13 +21,7 @@ app = FastAPI()
 # Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://localhost:8080",
-        "https://birth-wish-automation-git-master-nilesh-pawars-projects.vercel.app",
-        "https://birth-wish-automation.vercel.app"
-    ],
+    allow_origins=["*"],  # Allow all origins for local development
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -47,8 +41,9 @@ async def send_message(data: WhatsAppMessage):
         env_phone_id = os.getenv("WHATSAPP_PHONE_NUMBER_ID")
         env_token = os.getenv("WHATSAPP_ACCESS_TOKEN")
         
-        phone_number_id = data.phoneNumberId or env_phone_id
-        access_token = data.accessToken or env_token
+        # Prioritize ENV credentials for security and consistency
+        phone_number_id = env_phone_id or data.phoneNumberId
+        access_token = env_token or data.accessToken
 
         if not phone_number_id or not access_token:
             raise HTTPException(
@@ -63,9 +58,12 @@ async def send_message(data: WhatsAppMessage):
             "Authorization": f"Bearer {access_token}",
         }
 
-        recipient = data.recipientNumber.strip()
-        if not recipient.startswith("91") and len(recipient) == 10:
+        # Clean recipient number: remove non-numeric characters
+        recipient = re.sub(r"\D", "", data.recipientNumber)
+        if len(recipient) == 10:
             recipient = "91" + recipient
+            
+        logger.info(f"Targeting recipient: {recipient}")
 
         media_id = None
 
