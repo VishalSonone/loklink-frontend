@@ -9,6 +9,7 @@ export interface Politician {
   wabaId?: string;
   phoneNumberId?: string;
   accessToken?: string;
+  selectedTemplate?: TemplateId;
 }
 
 export interface Karyakarta {

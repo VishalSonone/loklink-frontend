@@ -85,7 +85,7 @@ const Dashboard = () => {
         todaysBirthdays,
         i18n.language as 'en' | 'hi' | 'mr',
         async (karyakarta) => {
-          const canvas = await generateBanner('modern-gradient', {
+          const canvas = await generateBanner(politician.selectedTemplate || 'modern-gradient', {
             karyakartaName: karyakarta.name,
             karyakartaPhoto: karyakarta.photo,
             politicianName: politician.name,

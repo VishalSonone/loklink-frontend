@@ -17,6 +17,7 @@ const defaultPolitician: Politician = {
   position: 'Member of Legislative Assembly',
   photo: '',
   defaultLanguage: 'en',
+  selectedTemplate: 'modern-gradient',
 };
 
 // Get today's date in MM-DD format for birthday matching

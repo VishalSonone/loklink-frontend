@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { toast } from '@/hooks/use-toast';
-import { getKaryakartas, getPolitician } from '@/services/storage.service';
+import { getKaryakartas, getPolitician, updatePolitician } from '@/services/storage.service';
 import { generateBanner, downloadBanner } from '@/services/banner.service';
 import { Karyakarta, TemplateId } from '@/types';
 import { languages } from '@/i18n';
@@ -36,12 +36,17 @@ const BannerPreview = () => {
 
   const [karyakartas, setKaryakartas] = useState<Karyakarta[]>([]);
   const [selectedKaryakarta, setSelectedKaryakarta] = useState<Karyakarta | null>(null);
-  const [selectedTemplate, setSelectedTemplate] = useState<TemplateId>('modern-gradient');
+  const [politician, setPolitician] = useState(getPolitician());
+  const [selectedTemplate, setSelectedTemplate] = useState<TemplateId>(politician.selectedTemplate || 'modern-gradient');
   const [selectedLanguage, setSelectedLanguage] = useState<'en' | 'hi' | 'mr'>('hi'); // Default to Hindi for banner
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // Use state to hold politician data so it doesn't change on every render (breaking the useEffect loop)
-  const [politician] = useState(getPolitician());
+  const handleTemplateChange = (templateId: TemplateId) => {
+    setSelectedTemplate(templateId);
+    const updatedPolitician = { ...politician, selectedTemplate: templateId };
+    updatePolitician(updatedPolitician);
+    setPolitician(updatedPolitician);
+  };
 
   useEffect(() => {
     const allKaryakartas = getKaryakartas();
@@ -181,10 +186,10 @@ const BannerPreview = () => {
               {templates.map((template) => (
                 <motion.button
                   key={template.id}
-                  onClick={() => setSelectedTemplate(template.id)}
+                  onClick={() => handleTemplateChange(template.id)}
                   className={`w-full p-3 rounded-lg border-2 flex items-center gap-3 transition-all ${selectedTemplate === template.id
-                      ? 'border-primary bg-primary/5'
-                      : 'border-border hover:border-primary/50'
+                    ? 'border-primary bg-primary/5'
+                    : 'border-border hover:border-primary/50'
                     }`}
                   whileTap={{ scale: 0.98 }}
                 >
