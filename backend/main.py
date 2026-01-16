@@ -21,7 +21,12 @@ app = FastAPI()
 # Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins for local development
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://birth-wish-automation-git-master-nilesh-pawars-projects.vercel.app",
+        "https://birth-wish-automation.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
