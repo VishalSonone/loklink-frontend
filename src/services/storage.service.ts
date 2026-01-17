@@ -39,7 +39,7 @@ const generateSampleKaryakartas = (): Karyakarta[] => {
       name: 'Nilesh Pawar',
       nameHi: 'निलेश पवार',
       nameMr: 'निलेश पवार',
-      whatsapp: '918010532454',
+      whatsapp: '910000000000',
       dob: todayFormatted, // Today's birthday!
       photo: '',
       createdAt: new Date().toISOString(),
@@ -78,35 +78,8 @@ export const initializeDemoData = (): void => {
 
   if (!storedKaryakartas) {
     localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(sampleKaryakartas));
-  } else {
-    try {
-      const parsed = JSON.parse(storedKaryakartas);
-      // If we don't have our special test member, add them or refresh
-      const testMemberIndex = parsed.findIndex((k: any) => k.name === 'Nilesh Pawar' || k.name === 'Test Member (You)');
-      if (testMemberIndex === -1) {
-        console.log('Adding Nilesh Pawar for WhatsApp testing...');
-        localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(sampleKaryakartas));
-      } else {
-        // Ensure name and number are correct
-        let changed = false;
-        if (parsed[testMemberIndex].name !== 'Nilesh Pawar') {
-          parsed[testMemberIndex].name = 'Nilesh Pawar';
-          parsed[testMemberIndex].nameHi = 'निलेश पवार';
-          parsed[testMemberIndex].nameMr = 'निलेश पवार';
-          changed = true;
-        }
-        if (parsed[testMemberIndex].whatsapp !== '918010532454') {
-          parsed[testMemberIndex].whatsapp = '918010532454';
-          changed = true;
-        }
-        if (changed) {
-          localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(parsed));
-        }
-      }
-    } catch (e) {
-      localStorage.setItem(STORAGE_KEYS.KARYAKARTAS, JSON.stringify(sampleKaryakartas));
-    }
   }
+
 
   if (!localStorage.getItem(STORAGE_KEYS.WHATSAPP_LOGS)) {
     localStorage.setItem(STORAGE_KEYS.WHATSAPP_LOGS, JSON.stringify([]));
